@@ -1,3 +1,3 @@
 #!/bin/sh
 
-bun run "$(dirname "$0")/src/cli.ts"
+bun run "$(dirname "$0")/src/cli.ts" -- "$@"
