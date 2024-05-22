@@ -18,7 +18,7 @@ const popOff = (n: number) => (xform: (vals: any[]) => any[]) => (state: State):
     if (n > state.stack.length) throw 'Stack Underflow.';
     const base: any[] = state.stack.slice(0, -n);
     const vals: any[] = state.stack.slice(-n);
-    
+
     return { ...state, stack: base.concat(xform(vals)) };
 }
 const on = ({
