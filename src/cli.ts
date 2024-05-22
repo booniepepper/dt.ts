@@ -1,9 +1,7 @@
-import { run } from './dt';
+import { printlns, run } from './dt';
 
-const code = process.argv.slice(2);
+const endState = run(process.argv.slice(2));
 
-console.debug({code});
-
-const result = run(code);
-
-console.debug({result});
+if (endState.stack.length > 0) {
+    printlns(endState.stack.pop());
+}
