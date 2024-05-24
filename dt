@@ -1,3 +1,8 @@
 #!/bin/sh
 
-bun run "$(dirname "$0")/src/cli.ts" -- "$@"
+command -v bun >/dev/null || {
+    >&2 echo 'Could not find a suitable TypeScript interpreter. Tried [bun] but none were available on PATH.'
+    exit 1
+}
+
+exec bun run "$(dirname "$0")/src/cli.ts" -- "$@"

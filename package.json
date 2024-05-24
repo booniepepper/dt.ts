@@ -1,10 +1,10 @@
 {
-  "name": "@booniepepper/dt-ts",
-  "version": "0.2.1",
+  "name": "@booniepepper/dt.ts",
+  "version": "0.3.0",
   "module": "src/cli.ts",
   "type": "module",
   "bin": {
-    "dt.ts": "src/cli.js"
+    "dt.ts": "dt"
   },
   "devDependencies": {
     "bun-types": "latest"

@@ -40,7 +40,8 @@ const on = ({
     3: (fn: (a: any, b: any, c:any) => any[]): StateFn => popOff(3)(([a, b, c]) => fn(a, b, c)),
 });
 
-export const printlns = (a: any, stream: NodeJS.WriteStream = stdout) => a instanceof Array ? a.forEach(v => writeln(v, stream)) : writeln(a, stream);
+export const printlns = (a: any, stream: NodeJS.WriteStream = stdout) =>
+    a instanceof Array ? a.forEach(v => writeln(v, stream)) : writeln(a, stream);
 
 const multikey = (keys: any[], value: any) => keys.reduce((acc, key) => Object.assign(acc, { [key]: value}), {});
 
@@ -146,7 +147,7 @@ export const builtins: Record<string, StateFn | unimplemented | quit> = {
     'sort': UNIMPLEMENTED,
     'split': on[2]((str, delim) => [as.string(str).split(delim)]),
     'starts-with?': on[2]((str, prefix) => [str instanceof String && str.startsWith(prefix)]),
-    ...multikey(['status', 's.'], (state: State) => { writeln(state.stack, stderr); return state; }),
+    ...multikey(['status', '.s'], (state: State) => { writeln(JSON.stringify(state.stack), stderr); return state; }),
     'swap': on[2]((a, b) => [b, a]),
     'times': UNIMPLEMENTED,
     'to-bool': on[1](a => [!!a]),
@@ -196,7 +197,7 @@ export const run = (terms: string[]): State =>
         }
 
         // Ok let's just chuck it in.
-        stack.push(JSON.parse(term));
+        stack.push(term);
         return state;
     },
     { stack: [], depth: 0 }
