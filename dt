@@ -5,4 +5,4 @@ command -v bun >/dev/null || {
     exit 1
 }
 
-exec bun run "$(dirname "$0")/src/cli.ts" -- "$@"
+exec bun run "$(dirname "$(readlink "$0")")/src/cli.ts" -- "$@"
