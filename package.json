@@ -1,6 +1,6 @@
 {
-  "name": "@booniepepper/dt-js",
-  "version": "0.1.0",
+  "name": "@booniepepper/dt-ts",
+  "version": "0.2.0",
   "module": "src/cli.ts",
   "type": "module",
   "devDependencies": {
