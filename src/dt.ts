@@ -197,7 +197,12 @@ export const run = (terms: string[]): State =>
         }
 
         // Ok let's just chuck it in.
-        stack.push(term);
+        try {
+            // Numbers, etc.
+            stack.push(JSON.parse(term));
+        } catch {
+            stack.push(term);
+        }
         return state;
     },
     { stack: [], depth: 0 }
