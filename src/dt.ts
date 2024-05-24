@@ -9,6 +9,7 @@ const reader = function*() {
     for (let line in rl) yield line;
 }();
 const readln = () => reader.next().value;
+const usage = 'USAGE: dt.ts [CODE...]\nFor more see: https://github.com/booniepepper/dt.ts';
 
 type State = {
     stack: any[];
@@ -167,6 +168,9 @@ export const builtins: Record<string, StateFn | unimplemented | quit> = {
     'while': UNIMPLEMENTED,
     'words': on[1](a => [as.string(a).split(' ')]),
     'writef': on[2]((contents, filename) => { writeFileSync(filename, contents); return []; }),
+
+    ...multikey(['--version', '-V'], on[0](() => { writeln(version); return [];})),
+    ...multikey(['--help', '-h'], on[0](() => { writeln(usage); return [];})),
 };
 
 export const run = (terms: string[]): State =>
